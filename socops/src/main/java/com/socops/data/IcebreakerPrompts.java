@@ -7,16 +7,16 @@ import java.util.List;
  * Exactly 24 entries — one fewer than the 25-cell grid, because the
  * centre cell is always the free space.
  *
- * Theme: Tech Life 🖥️
+ * Theme: Tech Life
  * A chaotic mix of coding habits, IDE preferences, and developer culture
  * prompts. Includes easy wins, conversation-sparking confessions, bold
  * career moments, and wildcard action squares.
  *
- * Difficulty guide:
- *   Easy Win  — everyday dev truths most people share (prompts 1–10)
- *   Medium    — habits or opinions that invite a story  (prompts 11–17)
- *   Bold      — career confessions that get a reaction  (prompts 18–22)
- *   Wildcard  — live action squares to spark interaction (prompts 23–24)
+ * Difficulty guide (ordinal positions, 1-based):
+ *   Easy Win  — everyday dev truths most people share    (1st–10th)
+ *   Medium    — habits or opinions that invite a story   (11th–17th)
+ *   Bold      — career confessions that get a reaction   (18th–22nd)
+ *   Wildcard  — live action squares to spark interaction (23rd–24th)
  */
 public final class IcebreakerPrompts {
 
@@ -48,9 +48,9 @@ public final class IcebreakerPrompts {
             "has rewritten 'perfectly fine' code just because it bothered them",
             "has named a variable after a food, snack, or pet",
             "has accidentally pushed a secret or API key (and fixed it fast)",
-            // ── Wildcards 🃏 ──────────────────────────────────────────────
-            "🃏 Wildcard: Teach someone a keyboard shortcut they don't know — right now!",
-            "🃏 Wildcard: Defend your tabs-vs-spaces stance to the nearest person for 10 seconds"
+            // ── Wildcards [WILDCARD] ─────────────────────────────────────
+            "[WILDCARD] Teach someone a keyboard shortcut they don't know — right now!",
+            "[WILDCARD] Defend your tabs-vs-spaces stance to the nearest person for 10 seconds"
     );
 
     private IcebreakerPrompts() {
