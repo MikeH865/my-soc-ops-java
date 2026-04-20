@@ -3,13 +3,94 @@
 <head>
 <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Soc Ops — Social Bingo</title>
+    <title>Soc Ops 🎉 Social Bingo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/app.css}"/>
     <link rel="icon" type="image/png" th:href="@{/favicon.png}"/>
     <style>
         /* active-state tweaks that need pseudo-class selectors */
-        .tile-active:active { background-color: #f3f4f6 !important; }
-        .accent-active:active { background-color: #3b82f6 !important; }
+        .tile-active:active { background-color: #f3f0ee !important; transform: scale(0.96) !important; }
+        .accent-active:active { background-color: var(--color-accent-dark) !important; transform: scale(0.97) !important; }
+
+        /* lobby card hover lift */
+        .howto-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .howto-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-warm); }
+
+        /* start button */
+        .btn-start {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ff8c42 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            letter-spacing: 0.02em;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 4px 18px rgba(255,107,107,0.45);
+        }
+        .btn-start:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(255,107,107,0.3); }
+
+        /* header back button */
+        .btn-back {
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: background 0.15s ease;
+        }
+        .btn-back:hover { background: rgba(255,107,107,0.08); }
+        .btn-back:active { background: rgba(255,107,107,0.15); }
+
+        /* keep-playing button */
+        .btn-keep {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ff8c42 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 1rem;
+            width: 100%;
+            box-shadow: 0 4px 14px rgba(255,107,107,0.4);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .btn-keep:active { transform: scale(0.97); }
+
+        /* game header */
+        .game-header {
+            background: #fff;
+            border-bottom: 2px solid #fce4d6;
+            box-shadow: 0 2px 8px rgba(255,107,107,0.08);
+        }
+
+        /* bingo banner */
+        .bingo-banner {
+            background: linear-gradient(90deg, #fff4cc 0%, #ffeaa7 100%);
+            color: #7d6608;
+            border-bottom: 2px solid var(--color-win-border);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        /* victory modal */
+        .victory-card {
+            background: #fff;
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            max-width: 20rem;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+        }
+        .victory-rainbow {
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
     </style>
 </head>
 <body class="h-full">
@@ -17,23 +98,24 @@
 <!-- ============================================================= -->
 <!--  LOBBY — visible before a game starts                          -->
 <!-- ============================================================= -->
-<div id="lobbyView" class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
+<div id="lobbyView" class="flex flex-col items-center justify-center min-h-full p-6 lobby-bg">
     <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
+        <div class="animate-float" style="font-size:3.5rem; margin-bottom:0.5rem; display:block;">🎲</div>
+        <h1 class="font-bold text-gray-900 mb-2" style="font-size:2.5rem; font-weight:900; letter-spacing:-0.02em;">Soc Ops</h1>
+        <p class="text-gray-600 mb-8" style="font-size:1.1rem; font-weight:600;">Social Bingo — meet your people! 🤝</p>
+
+        <div class="howto-card bg-white rounded-2xl p-6 shadow-sm border border-gray-200 mb-8">
+            <h2 class="font-bold text-gray-800 mb-3" style="font-size:1rem;">✨ How to play</h2>
             <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
+                <li>🔍 Find people who match the prompts</li>
+                <li>👆 Tap a square when you find a match</li>
+                <li>🏆 Get 5 in a row to win!</li>
             </ul>
         </div>
 
-        <button onclick="launchGame()"
-                class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg accent-active transition-colors">
-            Start Game
+        <button onclick="launchGame()" class="btn-start btn-pulse accent-active">
+            🚀 Start Game
         </button>
     </div>
 </div>
@@ -41,28 +123,27 @@
 <!-- ============================================================= -->
 <!--  ACTIVE GAME — board, header, optional bingo banner            -->
 <!-- ============================================================= -->
-<div id="activeView" class="flex flex-col min-h-full bg-gray-50" style="display:none">
+<div id="activeView" class="flex flex-col min-h-full" style="display:none; background-color:var(--color-bg);">
 
     <!-- top bar -->
-    <header class="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-        <button onclick="retreatToLobby()"
-                class="text-gray-500 text-sm px-3 py-1\.5 rounded tile-active">
-            &#8592; Back
+    <header class="game-header flex items-center justify-between p-3">
+        <button onclick="retreatToLobby()" class="btn-back">
+            ← Back
         </button>
-        <h1 class="font-bold text-gray-900">Soc Ops</h1>
+        <h1 class="font-bold text-gray-900" style="font-size:1.05rem; font-weight:800;">🎲 Soc Ops</h1>
         <div class="w-16"></div>
     </header>
 
     <!-- hint -->
-    <p class="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
+    <p class="text-center text-gray-500 text-sm py-2 px-4" style="font-weight:600;">
+        💡 Tap a square when you find your match!
     </p>
 
     <!-- bingo banner (hidden until victory) -->
     <div id="bingoBanner"
-         class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm"
+         class="bingo-banner text-center py-2 text-sm"
          style="display:none">
-        &#127881; BINGO! You got a line!
+        🎉 BINGO! You got a line! Keep going! 🎊
     </div>
 
     <!-- the 5×5 grid -->
@@ -80,13 +161,13 @@
 <div id="victoryOverlay"
      class="fixed inset-0 bg-black\/50 flex items-center justify-center p-4 z-50"
      style="display:none">
-    <div class="bg-white rounded-xl p-6 max-w-xs w-full text-center shadow-xl animate-[bounce_0.5s_ease-out]">
-        <div class="text-5xl mb-4">&#127881;</div>
-        <h2 class="text-3xl font-bold text-amber-500 mb-2">BINGO!</h2>
-        <p class="text-gray-600 mb-6">You completed a line!</p>
-        <button onclick="dismissVictoryModal()"
-                class="w-full bg-accent text-white font-semibold py-3 px-6 rounded-lg accent-active transition-colors">
-            Keep Playing
+    <div class="victory-card animate-[bounce_0.5s_ease-out]">
+        <div style="font-size:3.5rem; margin-bottom:0.5rem; display:block;">🎉</div>
+        <h2 class="font-bold mb-1 victory-rainbow" style="font-size:2.5rem; font-weight:900;">BINGO!</h2>
+        <div style="font-size:1.5rem; margin-bottom:0.5rem;">🥳✨🏆</div>
+        <p class="text-gray-600 mb-6" style="font-weight:600;">You completed a line!</p>
+        <button onclick="dismissVictoryModal()" class="btn-keep">
+            Keep Playing 🎮
         </button>
     </div>
 </div>
@@ -133,18 +214,29 @@
             var tile = liveTiles[t];
             var btn = document.createElement("button");
 
-            /* base styling identical to the original Blazor BingoSquare */
+            /* base styling */
             var base = "relative flex items-center justify-center p-1 text-center " +
-                       "border border-gray-300 rounded transition-all duration-150 " +
-                       "select-none min-h-[60px] text-xs leading-tight";
+                       "border rounded transition-all duration-150 " +
+                       "select-none min-h-[60px] text-xs leading-tight tile-hover";
 
             var state;
             if (tile.selected) {
-                state = winIds[tile.id]
-                    ? "bg-amber-200 border-amber-400 text-amber-900"
-                    : "bg-marked border-marked-border text-green-800";
+                if (winIds[tile.id]) {
+                    /* winning streak tile — golden sunshine */
+                    state = "border-amber-400 text-amber-900 font-bold";
+                    btn.style.backgroundColor = "var(--color-win)";
+                    btn.style.boxShadow = "0 2px 8px rgba(255,217,61,0.5)";
+                } else {
+                    /* selected but not in winning line — fresh green */
+                    state = "border-marked-border text-green-800 font-semibold";
+                    btn.style.backgroundColor = "var(--color-marked)";
+                    btn.style.color = "var(--color-marked-text)";
+                    btn.style.boxShadow = "0 2px 8px rgba(107,203,119,0.4)";
+                }
             } else {
-                state = "bg-white text-gray-700 tile-active";
+                /* unselected — warm white */
+                state = "bg-white border-gray-300 text-gray-700 tile-active";
+                btn.style.boxShadow = "var(--shadow-tile)";
             }
 
             var extra = tile.freeCell ? " font-bold text-sm" : "";
@@ -163,7 +255,8 @@
             /* check-mark for marked non-free tiles */
             if (tile.selected && !tile.freeCell) {
                 var tick = document.createElement("span");
-                tick.className = "absolute top-0.5 right-0.5 text-green-600 text-xs";
+                tick.className = "absolute top-0.5 right-0.5 text-xs";
+                tick.style.color = winIds[tile.id] ? "#7d6608" : "var(--color-marked-text)";
                 tick.textContent = "\u2713";
                 btn.appendChild(tick);
             }
