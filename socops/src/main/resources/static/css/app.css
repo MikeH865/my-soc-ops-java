@@ -178,3 +178,284 @@ button:disabled { cursor: default; }
 .animate-\[bounce_0\.5s_ease-out\] {
     animation: bounce 0.5s ease-out;
 }
+
+/* ================================================================
+   LOBBY — ops-terminal landing page
+   ================================================================ */
+
+:root {
+    --ops-bg:       #080c10;
+    --ops-surface:  #0d1520;
+    --ops-border:   #1a2e44;
+    --ops-amber:    #f5a623;
+    --ops-amber-dim:#7a4f0a;
+    --ops-green:    #39ff6a;
+    --ops-green-dim:#0f3a1c;
+    --ops-text:     #c8d8e8;
+    --ops-text-dim: #4a6070;
+    --ops-font-mono: 'Share Tech Mono', monospace;
+    --ops-font-cond: 'Saira Condensed', sans-serif;
+}
+
+/* root container */
+.lobby-root {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    background-color: var(--ops-bg);
+    overflow: hidden;
+    font-family: var(--ops-font-mono);
+}
+
+/* animated dot-grid background */
+.lobby-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, var(--ops-border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    animation: lobby-grid-drift 40s linear infinite;
+    opacity: 0.6;
+}
+@keyframes lobby-grid-drift {
+    from { background-position: 0 0; }
+    to   { background-position: 280px 280px; }
+}
+
+/* scanlines overlay */
+.lobby-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.18) 3px,
+        rgba(0, 0, 0, 0.18) 4px
+    );
+    pointer-events: none;
+}
+
+/* corner brackets */
+.lobby-corner {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-color: var(--ops-amber);
+    border-style: solid;
+    opacity: 0.6;
+}
+.lobby-corner-tl { top: 20px; left: 20px;  border-width: 2px 0 0 2px; }
+.lobby-corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+.lobby-corner-bl { bottom: 20px; left: 20px;  border-width: 0 0 2px 2px; }
+.lobby-corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+/* main content stack */
+.lobby-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 360px;
+    padding: 2rem 1.25rem;
+    animation: lobby-fadein 0.6s ease-out both;
+}
+@keyframes lobby-fadein {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* status bar */
+.lobby-statusbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--ops-text-dim);
+    animation: lobby-fadein 0.4s 0.1s ease-out both;
+}
+.lobby-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ops-green);
+    box-shadow: 0 0 6px var(--ops-green);
+    animation: lobby-blink 2s step-end infinite;
+}
+@keyframes lobby-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+.lobby-status-text {
+    color: var(--ops-text-dim);
+    letter-spacing: 0.1em;
+}
+.lobby-status-sep {
+    color: var(--ops-border);
+}
+
+/* logo block */
+.lobby-logo-block {
+    text-align: center;
+    animation: lobby-fadein 0.5s 0.2s ease-out both;
+}
+.lobby-logo-prefix {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--ops-amber-dim);
+    margin-bottom: 0.25rem;
+}
+.lobby-title {
+    font-family: var(--ops-font-cond);
+    font-size: clamp(4rem, 18vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ops-text);
+    text-shadow: 0 0 40px rgba(197, 220, 240, 0.15);
+    margin: 0;
+}
+.lobby-title-accent {
+    color: var(--ops-amber);
+    text-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
+}
+.lobby-subtitle-line {
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--ops-text-dim);
+}
+.lobby-subtitle-bracket {
+    color: var(--ops-amber-dim);
+}
+
+/* mission briefing card */
+.lobby-briefing {
+    width: 100%;
+    background: var(--ops-surface);
+    border: 1px solid var(--ops-border);
+    border-top: 2px solid var(--ops-amber);
+    animation: lobby-fadein 0.5s 0.35s ease-out both;
+}
+.lobby-briefing-header {
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid var(--ops-border);
+    background: rgba(245, 166, 35, 0.06);
+}
+.lobby-briefing-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--ops-amber);
+}
+.lobby-rules {
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.lobby-rule {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--ops-text);
+    line-height: 1.3;
+}
+.lobby-rule-num {
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    color: var(--ops-amber);
+    letter-spacing: 0.05em;
+}
+
+/* mini grid preview */
+.lobby-grid-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    padding: 0.5rem 0.75rem 0.75rem;
+    opacity: 0.7;
+}
+.lgp-cell {
+    aspect-ratio: 1;
+    background: var(--ops-bg);
+    border: 1px solid var(--ops-border);
+    border-radius: 2px;
+}
+.lgp-marked {
+    background: var(--ops-green-dim);
+    border-color: var(--ops-green);
+    box-shadow: inset 0 0 4px rgba(57, 255, 106, 0.3);
+}
+.lgp-free {
+    background: rgba(245, 166, 35, 0.15);
+    border-color: var(--ops-amber-dim);
+}
+
+/* launch button */
+.lobby-launch-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 2px solid var(--ops-amber);
+    color: var(--ops-amber);
+    font-family: var(--ops-font-cond);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.2s, background 0.2s;
+    animation: lobby-fadein 0.5s 0.5s ease-out both;
+}
+.lobby-launch-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ops-amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.lobby-launch-btn:hover::before,
+.lobby-launch-btn:focus::before {
+    transform: scaleX(1);
+}
+.lobby-launch-btn:hover,
+.lobby-launch-btn:focus {
+    color: var(--ops-bg);
+    outline: none;
+}
+.lobby-launch-btn:active {
+    opacity: 0.85;
+}
+.lobby-launch-icon {
+    position: relative;
+    font-size: 0.85em;
+}
+.lobby-launch-text {
+    position: relative;
+}
+
+/* footer */
+.lobby-footer {
+    animation: lobby-fadein 0.5s 0.65s ease-out both;
+}
+.lobby-footer-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--ops-text-dim);
+}
