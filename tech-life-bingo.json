@@ -1,0 +1,157 @@
+{
+  "theme": "Tech Life",
+  "description": "Icebreaker bingo for developers — coding habits, IDE preferences, and developer culture",
+  "size": "5x5",
+  "squares": [
+    {
+      "id": 1,
+      "text": "Uses dark mode",
+      "category": "ide-preferences",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "text": "Has Googled a syntax error today",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "text": "Has more than 10 browser tabs open right now",
+      "category": "developer-culture",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "text": "Prefers spaces over tabs",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "text": "Has copy-pasted from Stack Overflow this week",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "text": "Has named a variable 'temp', 'foo', or 'x'",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 7,
+      "text": "Uses keyboard shortcuts instead of the mouse",
+      "category": "ide-preferences",
+      "difficulty": "easy"
+    },
+    {
+      "id": 8,
+      "text": "Has left a TODO comment in code for months",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "text": "Has more than 3 unfinished side projects",
+      "category": "developer-culture",
+      "difficulty": "easy"
+    },
+    {
+      "id": 10,
+      "text": "Has restarted their computer to fix a bug",
+      "category": "coding-habits",
+      "difficulty": "easy"
+    },
+    {
+      "id": 11,
+      "text": "Can touch-type without looking at the keyboard",
+      "category": "developer-culture",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "text": "Has at least 2 different IDEs or editors installed",
+      "category": "ide-preferences",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "text": "Uses version control for personal projects",
+      "category": "coding-habits",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "text": "Can recite at least one HTTP status code from memory",
+      "category": "developer-culture",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "text": "Has written a unit test that only tests the happy path",
+      "category": "coding-habits",
+      "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "text": "Has customised their IDE theme or font",
+      "category": "ide-preferences",
+      "difficulty": "medium"
+    },
+    {
+      "id": 17,
+      "text": "Has debugged by adding print or console.log statements",
+      "category": "coding-habits",
+      "difficulty": "medium"
+    },
+    {
+      "id": 18,
+      "text": "Knows what vim is (bonus points: can exit it)",
+      "category": "ide-preferences",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "text": "Has pushed directly to main or master",
+      "category": "coding-habits",
+      "difficulty": "bold"
+    },
+    {
+      "id": 20,
+      "text": "Has used AI to help write or review code",
+      "category": "developer-culture",
+      "difficulty": "bold"
+    },
+    {
+      "id": 21,
+      "text": "Owns or covets a mechanical keyboard",
+      "category": "developer-culture",
+      "difficulty": "bold"
+    },
+    {
+      "id": 22,
+      "text": "Has pair-programmed in the last month",
+      "category": "coding-habits",
+      "difficulty": "bold"
+    },
+    {
+      "id": 23,
+      "text": "WILDCARD: Teach the group a keyboard shortcut — right now!",
+      "category": "wildcard",
+      "difficulty": "wildcard"
+    },
+    {
+      "id": 24,
+      "text": "WILDCARD: Show your terminal or IDE theme to someone nearby",
+      "category": "wildcard",
+      "difficulty": "wildcard"
+    },
+    {
+      "id": 25,
+      "text": "WILDCARD: Name a programming language you want to learn next",
+      "category": "wildcard",
+      "difficulty": "wildcard"
+    }
+  ]
+}
